@@ -8,40 +8,43 @@
 
 import Foundation
 
-class Todo {
+class SimpleTodo {
     
-    private let document: CBLDocument // JSON that is stored in the remote database
-    
-    var done: Bool {
-        didSet {
-            sync() // When this value changes, set it in the underlying document
-        }
-    }
-    var what: String {
-        didSet {
-            sync()
-        }
-    }
-    
-    // Initialize from an existing doc
-    init(document: CBLDocument) {
-        let properties = document.properties!
-        self.what = properties["what"] as! String
-        self.done = properties["done"] as! Bool
-        self.document = document
-    }
+    var done: Bool
+    var what: String
     
     // Initialize and create a document
     init(what: String, done: Bool = false) {
         self.done = done
         self.what = what
-        self.document = databaseManager.database.createDocument()
-        self.document.setProperties(["what": what, "done": done])
     }
     
     // Generate a dictionary of values
     func toDict() -> [String: AnyObject] {
         return ["what": what, "done": done]
+    }
+}
+
+class RemoteTodo: SimpleTodo {
+    
+    private let document: CBLDocument // JSON that is stored in the remote database
+    
+    init(what: String, done: Bool = false, document: CBLDocument? = nil) {
+        if let doc = document {
+            self.document = doc
+        } else {
+            self.document = databaseManager.database.createDocument()
+            self.document.setProperties(["what": what, "done": done])
+        }
+        super.init(what: what, done: done)
+    }
+    
+    // Initialize from an existing doc
+    convenience init(document: CBLDocument) {
+        let properties = document.properties!
+        let what = properties["what"] as! String
+        let done = properties["done"] as! Bool
+        self.init(what: what, done: done, document: document)
     }
     
     // MARK: CouchBase methods
@@ -57,7 +60,7 @@ class Todo {
 }
 
 class TodoManager {
-    var todos = [Todo]()
+    var todos = [RemoteTodo]()
     
     func deleteTodo(index: Int) {
         let todo = todos[index]
@@ -65,36 +68,17 @@ class TodoManager {
         todos.removeAtIndex(index)
     }
     
-    func getTodoAtIndex(index: Int) -> Todo {
+    func getTodoAtIndex(index: Int) -> RemoteTodo {
         return todos[index]
     }
     
     func addTodo(what: String) {
-        todos.append(Todo(what: what))
+        todos.append(RemoteTodo(what: what))
     }
     
     func toggleTodoDone(index: Int) {
-        todos[index].done = !todos[index].done
+        let todo = todos[index]
+        todo.done = !todo.done
+        todo.sync()
     }
 }
-
-//class QueryManager: NSObject {
-//    
-//    let liveQuery: CBLLiveQuery
-//    
-//    override init() {
-//        let database = databaseManager.database // 1. Grab the database we initialized
-//        let query = database.createAllDocumentsQuery() // 2. Query for all the documents in the database
-//        liveQuery = query.asLiveQuery() // 3. Create a "live query" - rows automatically update
-//        super.init()
-//        liveQuery.addObserver(self, forKeyPath: "rows", options: NSKeyValueObservingOptions.New, context: nil) // 4. Observe for the changed value
-//    }
-//    
-//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-//        if let rows = liveQuery.rows where keyPath == "rows" {
-//            let todos = rows.map {Todo(document: $0.document!)}
-////            self.todoManager.todos = todos
-////            self.tableView.reloadData()
-//        }
-//    }
-//}
