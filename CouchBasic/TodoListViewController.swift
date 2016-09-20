@@ -16,7 +16,7 @@ extension CBLDocument {
             properties[prop] = props[prop]
         }
         if put {
-            try! putProperties(properties)
+            try! putProperties(properties) // Set properties to be synced with CouchBase
         }
     }
 }
