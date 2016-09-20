@@ -100,6 +100,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         done.backgroundColor = UIColor.blueColor()
         let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
             self.todos[index.row].delete()
+            self.todos.removeAtIndex(index.row)
         }
         delete.backgroundColor = UIColor.redColor()
         
@@ -110,7 +111,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if let text = self.textField.text where text.characters.count > 0 {
-            Todo.newRemoteTodo(database, text: text)
+            todos.append(Todo.newRemoteTodo(database, text: text))
             self.textField.text = nil
         }
         return true
