@@ -16,10 +16,8 @@
 		97BE40311D8F427800BB7974 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BE40301D8F427800BB7974 /* libc++.1.dylib */; };
 		97DC72D51D8F14AE0070DCD8 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */; };
 		97DC72D71D8F15310070DCD8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC72D61D8F15310070DCD8 /* Helpers.swift */; };
-		97DC72D91D8F191C0070DCD8 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC72D81D8F191C0070DCD8 /* TodoViewController.swift */; };
 		97F170EC1D8EF7AD0046D014 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F170EB1D8EF7AD0046D014 /* AppDelegate.swift */; };
 		97F170F31D8EF7AD0046D014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97F170F21D8EF7AD0046D014 /* Assets.xcassets */; };
-		97F170F61D8EF7AD0046D014 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F170F41D8EF7AD0046D014 /* LaunchScreen.storyboard */; };
 		97F171011D8EF7AD0046D014 /* CouchBasicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F171001D8EF7AD0046D014 /* CouchBasicTests.swift */; };
 		97F1710C1D8EF7AD0046D014 /* CouchBasicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1710B1D8EF7AD0046D014 /* CouchBasicUITests.swift */; };
 /* End PBXBuildFile section */
@@ -54,12 +52,10 @@
 		97BE40301D8F427800BB7974 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
 		97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		97DC72D61D8F15310070DCD8 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		97DC72D81D8F191C0070DCD8 /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		97DC72DA1D8F19FB0070DCD8 /* CouchBasic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CouchBasic-Bridging-Header.h"; sourceTree = "<group>"; };
 		97F170E81D8EF7AD0046D014 /* CouchBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F170EB1D8EF7AD0046D014 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F170F21D8EF7AD0046D014 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		97F170F51D8EF7AD0046D014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97F170F71D8EF7AD0046D014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F170FC1D8EF7AD0046D014 /* CouchBasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchBasicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F171001D8EF7AD0046D014 /* CouchBasicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchBasicTests.swift; sourceTree = "<group>"; };
@@ -146,7 +142,6 @@
 				97F170EB1D8EF7AD0046D014 /* AppDelegate.swift */,
 				97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */,
 				97DC72D61D8F15310070DCD8 /* Helpers.swift */,
-				97DC72D81D8F191C0070DCD8 /* TodoViewController.swift */,
 			);
 			path = CouchBasic;
 			sourceTree = "<group>";
@@ -173,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				97F170F21D8EF7AD0046D014 /* Assets.xcassets */,
-				97F170F41D8EF7AD0046D014 /* LaunchScreen.storyboard */,
 				97F170F71D8EF7AD0046D014 /* Info.plist */,
 				97DC72DA1D8F19FB0070DCD8 /* CouchBasic-Bridging-Header.h */,
 			);
@@ -284,7 +278,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97F170F61D8EF7AD0046D014 /* LaunchScreen.storyboard in Resources */,
 				97F170F31D8EF7AD0046D014 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +303,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97DC72D91D8F191C0070DCD8 /* TodoViewController.swift in Sources */,
 				97DC72D51D8F14AE0070DCD8 /* TodoListViewController.swift in Sources */,
 				97F170EC1D8EF7AD0046D014 /* AppDelegate.swift in Sources */,
 				97DC72D71D8F15310070DCD8 /* Helpers.swift in Sources */,
@@ -347,17 +339,6 @@
 			targetProxy = 97F171081D8EF7AD0046D014 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		97F170F41D8EF7AD0046D014 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97F170F51D8EF7AD0046D014 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		97F1710E1D8EF7AD0046D014 /* Debug */ = {
