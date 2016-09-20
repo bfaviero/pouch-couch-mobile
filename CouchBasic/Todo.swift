@@ -29,6 +29,7 @@ class Todo {
         return Todo(doc: document)
     }
     
+    // Initialize a Todo and corresponding remote document
     init(doc: CBLDocument) {
         let dict = doc.properties!
         self.done = dict["done"] as! Bool
@@ -36,16 +37,18 @@ class Todo {
         self.document = doc
     }
     
+    // Generate a dictionary of values
     func toDict() -> [String: AnyObject] {
         return ["what": what, "done": done]
     }
     
-    // MARK - CouchBase methods
+    // MARK: CouchBase methods
     
     func delete() {
         try! document.deleteDocument()
     }
     
+    // Set the values of the underlying document
     func sync() {
         document.setProperties(toDict())
     }

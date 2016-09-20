@@ -67,7 +67,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    // MARK - UITableViewDataSource
+    // MARK: UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todos.count
@@ -83,7 +83,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    // MARK - UITableViewDelegate
+    // MARK: UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let todo = todos[indexPath.row]
@@ -104,7 +104,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         return [done, delete]
     }
     
-    // MARK - UITextFieldDelegate
+    // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if let text = self.textField.text where text.characters.count > 0 {
