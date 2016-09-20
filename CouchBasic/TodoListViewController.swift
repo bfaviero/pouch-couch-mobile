@@ -10,44 +10,14 @@ import Foundation
 import UIKit
 
 extension CBLDocument {
-    func setProperties(props: [String: AnyObject]) {
+    func setProperties(props: [String: AnyObject], put: Bool = true) {
         var properties: [String: AnyObject] = self.properties ?? [:]
         for prop in props.keys {
             properties[prop] = props[prop]
         }
-        try! putProperties(properties)
-    }
-}
-
-struct Todo {
-    
-    private let document: CBLDocument
-    
-    var done: Bool {
-        didSet {
-            document.setProperties(["done": done])
+        if put {
+            try! putProperties(properties)
         }
-    }
-    var what: String {
-        didSet {
-            document.setProperties(["what": what])
-        }
-    }
-    
-    static func newRemoteTodo(database: CBLDatabase, text: String) {
-        let document = database.createDocument()
-        document.setProperties(["what": text, "done": false])
-    }
-    
-    init(doc: CBLDocument) {
-        let dict = doc.properties!
-        self.done = dict["done"] as! Bool
-        self.what = dict["what"] as! String
-        self.document = doc
-    }
-    
-    func delete() {
-        try! document.deleteDocument()
     }
 }
 
@@ -57,15 +27,9 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     var dataSource: CBLUITableSource!
     var liveQuery: CBLLiveQuery!
     var todos = [Todo]()
-    let textField = Init(UITextField()) { textField in
-        textField.placeholder = "Add a new todo"
-        textField.translatesAutoresizingMaskIntoConstraints = false
-    }
+    let textField = UITextField()
     
-    let tableView = Init(UITableView()) { tableView in
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorColor = .clearColor()
-    }
+    let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,12 +37,17 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.edgesForExtendedLayout = .None
         
         // textfield
+        textField.placeholder = "Add a new todo"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+
         textField.delegate = self
         self.view.addSubview(textField)
         textField.constrainToItem(view, attributes: [.Left, .Right, .Top])
         textField.constrainAttribute(.Height, constant: 60)
         
         // setup tableview
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorColor = .clearColor()
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
@@ -101,6 +70,8 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    // MARK - UITableViewDataSource
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todos.count
     }
@@ -115,18 +86,11 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    // MARK - UITableViewDelegate
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var todo = todos[indexPath.row]
+        let todo = todos[indexPath.row]
         todo.done = !todo.done
-    }
-    
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if let text = self.textField.text where text.characters.count > 0 {
-            Todo.newRemoteTodo(database, text: text)
-            self.textField.text = nil
-        }
-        return true
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -140,6 +104,16 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         delete.backgroundColor = UIColor.redColor()
         
         return [done, delete]
+    }
+    
+    // MARK - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if let text = self.textField.text where text.characters.count > 0 {
+            Todo.newRemoteTodo(database, text: text)
+            self.textField.text = nil
+        }
+        return true
     }
     
 }

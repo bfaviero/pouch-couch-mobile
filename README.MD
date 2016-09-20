@@ -1,3 +1,3 @@
-This was helped by looking at the CouchBase Grocery-Sync tutorial
+The simplest implementation of a Todo List that syncs with a CouchDB server
 
-https://github.com/couchbaselabs/Grocery-Sync-iOS
+This was helped by looking at the CouchBase Grocery-Sync [tutorial](https://github.com/couchbaselabs/Grocery-Sync-iOS)
