@@ -23,13 +23,11 @@ extension CBLDocument {
 
 class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    var database: CBLDatabase!
-    var dataSource: CBLUITableSource!
-    var liveQuery: CBLLiveQuery!
     var todos = [Todo]()
     let textField = UITextField()
-    
     let tableView = UITableView()
+    var database: CBLDatabase!
+    var liveQuery: CBLLiveQuery!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +53,10 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Top, toItem: textField, attribute: .Bottom))
         
         // setup database
-        self.database = AppDelegate.delegate.database
-        let query = database.createAllDocumentsQuery()
-        liveQuery = query.asLiveQuery()
-        liveQuery.addObserver(self, forKeyPath: "rows", options: NSKeyValueObservingOptions.New, context: nil)
-        liveQuery.start()
+        self.database = AppDelegate.delegate.database // 1. Grab the database we initialized
+        let query = database.createAllDocumentsQuery() // 2. Query for all the documents in the database
+        liveQuery = query.asLiveQuery() // 3. Create a "live query" - rows automatically update
+        liveQuery.addObserver(self, forKeyPath: "rows", options: NSKeyValueObservingOptions.New, context: nil) // 4. Observe for the changed value
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
