@@ -23,11 +23,11 @@ extension CBLDocument {
 
 class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    var todos = [Todo]()
     let textField = UITextField()
     let tableView = UITableView()
     var database: CBLDatabase!
     var liveQuery: CBLLiveQuery!
+    let todoManager = TodoManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Top, toItem: textField, attribute: .Bottom))
         
         // setup database
-        self.database = AppDelegate.delegate.database // 1. Grab the database we initialized
+        self.database = databaseManager.database // 1. Grab the database we initialized
         let query = database.createAllDocumentsQuery() // 2. Query for all the documents in the database
         liveQuery = query.asLiveQuery() // 3. Create a "live query" - rows automatically update
         liveQuery.addObserver(self, forKeyPath: "rows", options: NSKeyValueObservingOptions.New, context: nil) // 4. Observe for the changed value
@@ -61,8 +61,8 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let query = liveQuery, rows = query.rows where keyPath == "rows" {
-            let todos = rows.map {Todo(doc: $0.document!)}
-            self.todos = todos
+            let todos = rows.map {Todo(document: $0.document!)}
+            self.todoManager.todos = todos
             self.tableView.reloadData()
         }
     }
@@ -70,12 +70,12 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todos.count
+        return todoManager.todos.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
-        let todo = todos[indexPath.row]
+        let todo = todoManager.getTodoAtIndex(indexPath.row)
         cell.textLabel!.text = todo.what
         if todo.done {
             cell.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.3)
@@ -86,29 +86,20 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let todo = todos[indexPath.row]
-        todo.done = !todo.done
+        todoManager.toggleTodoDone(indexPath.row)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let done = UITableViewRowAction(style: .Default, title: "Done") { action, index in
-            self.todos[index.row].done = true
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            todoManager.deleteTodo(indexPath.row)
         }
-        done.backgroundColor = UIColor.blueColor()
-        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
-            self.todos[index.row].delete()
-            self.todos.removeAtIndex(index.row)
-        }
-        delete.backgroundColor = UIColor.redColor()
-        
-        return [done, delete]
     }
     
     // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if let text = self.textField.text where text.characters.count > 0 {
-            todos.append(Todo.newRemoteTodo(database, text: text))
+            todoManager.addTodo(text)
             self.textField.text = nil
         }
         return true

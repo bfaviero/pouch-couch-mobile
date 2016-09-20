@@ -12,15 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let databaseName = "c1"
-    let databaseUrl = NSURL(string: "https://pouch-couch.gleb-demos.com/db/c1/")!
-    var database: CBLDatabase!
-    var pusher: CBLReplication!
-    var puller: CBLReplication!
-    
-    static var delegate: AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
-    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -29,15 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.addSubview(navigationController.view);
         window!.rootViewController = navigationController;
         window!.makeKeyAndVisible()
-        
-        try! database = CBLManager.sharedInstance().databaseNamed("c1")
-        // Initialize replication:
-        puller = database.createPullReplication(databaseUrl)
-        pusher = database.createPushReplication(databaseUrl)
-        pusher.continuous = true
-        puller.continuous = true
-        pusher.start()
-        puller.start()
+
         return true
     }
 

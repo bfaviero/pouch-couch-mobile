@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		97619B851D90B9CA0091A207 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97619B841D90B9CA0091A207 /* Todo.swift */; };
+		97619B891D90E3530091A207 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97619B881D90E3530091A207 /* DatabaseManager.swift */; };
 		97BE40231D8F416B00BB7974 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BE40221D8F416B00BB7974 /* CouchbaseLite.framework */; };
 		97BE40251D8F417D00BB7974 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9719D8F01D8F1D60005CF0BD /* CFNetwork.framework */; };
 		97BE40261D8F418600BB7974 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9719D8F21D8F1D67005CF0BD /* Security.framework */; };
@@ -47,6 +48,7 @@
 		9719D8F61D8F1D8B005CF0BD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9719D8F81D8F1D96005CF0BD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		97619B841D90B9CA0091A207 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		97619B881D90E3530091A207 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		97BE40221D8F416B00BB7974 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 		97BE40281D8F41AC00BB7974 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		97BE402B1D8F425000BB7974 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
@@ -145,6 +147,7 @@
 				97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */,
 				97DC72D61D8F15310070DCD8 /* Helpers.swift */,
 				97619B841D90B9CA0091A207 /* Todo.swift */,
+				97619B881D90E3530091A207 /* DatabaseManager.swift */,
 			);
 			path = CouchBasic;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			files = (
 				97DC72D51D8F14AE0070DCD8 /* TodoListViewController.swift in Sources */,
 				97F170EC1D8EF7AD0046D014 /* AppDelegate.swift in Sources */,
+				97619B891D90E3530091A207 /* DatabaseManager.swift in Sources */,
 				97DC72D71D8F15310070DCD8 /* Helpers.swift in Sources */,
 				97619B851D90B9CA0091A207 /* Todo.swift in Sources */,
 			);
