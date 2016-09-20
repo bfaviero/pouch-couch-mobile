@@ -14,8 +14,6 @@
 		97BE402D1D8F425E00BB7974 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BE402B1D8F425000BB7974 /* libz.1.dylib */; };
 		97BE402F1D8F427000BB7974 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BE402E1D8F427000BB7974 /* libsqlite3.dylib */; };
 		97BE40311D8F427800BB7974 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BE40301D8F427800BB7974 /* libc++.1.dylib */; };
-		97BE40341D8F436E00BB7974 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE40331D8F436E00BB7974 /* Utilities.swift */; };
-		97BE40351D8F436E00BB7974 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE40331D8F436E00BB7974 /* Utilities.swift */; };
 		97DC72D51D8F14AE0070DCD8 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */; };
 		97DC72D71D8F15310070DCD8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC72D61D8F15310070DCD8 /* Helpers.swift */; };
 		97DC72D91D8F191C0070DCD8 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC72D81D8F191C0070DCD8 /* TodoViewController.swift */; };
@@ -54,7 +52,6 @@
 		97BE402B1D8F425000BB7974 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
 		97BE402E1D8F427000BB7974 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
 		97BE40301D8F427800BB7974 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
-		97BE40331D8F436E00BB7974 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		97DC72D61D8F15310070DCD8 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		97DC72D81D8F191C0070DCD8 /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 				97DC72D41D8F14AE0070DCD8 /* TodoListViewController.swift */,
 				97DC72D61D8F15310070DCD8 /* Helpers.swift */,
 				97DC72D81D8F191C0070DCD8 /* TodoViewController.swift */,
-				97BE40331D8F436E00BB7974 /* Utilities.swift */,
 			);
 			path = CouchBasic;
 			sourceTree = "<group>";
@@ -314,7 +310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97BE40341D8F436E00BB7974 /* Utilities.swift in Sources */,
 				97DC72D91D8F191C0070DCD8 /* TodoViewController.swift in Sources */,
 				97DC72D51D8F14AE0070DCD8 /* TodoListViewController.swift in Sources */,
 				97F170EC1D8EF7AD0046D014 /* AppDelegate.swift in Sources */,
@@ -326,7 +321,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97BE40351D8F436E00BB7974 /* Utilities.swift in Sources */,
 				97F171011D8EF7AD0046D014 /* CouchBasicTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
