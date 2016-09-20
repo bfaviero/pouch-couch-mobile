@@ -10,11 +10,11 @@ import Foundation
 
 class Todo {
     
-    private let document: CBLDocument
+    private let document: CBLDocument // JSON that is stored in the remote database
     
     var done: Bool {
         didSet {
-            sync()
+            sync() // When this value changes, set it in the underlying document
         }
     }
     var what: String {
